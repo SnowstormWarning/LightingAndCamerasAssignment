@@ -10,6 +10,7 @@ namespace LightingAndCamerasAssignment
         private SpriteBatch _spriteBatch;
         private Crate[] crates;
         private CirclingCamera camera;
+        private FPSCamera fpsCamera;
 
         public Game1()
         {
@@ -39,6 +40,7 @@ namespace LightingAndCamerasAssignment
         new Crate(this, CrateType.Cross, Matrix.CreateRotationY(3) * Matrix.CreateTranslation(3, 2, -3))
     };
             camera = new CirclingCamera(this, new Vector3(0, 5, 10), 0.5f);
+            fpsCamera = new FPSCamera(this, new Vector3(0, 3, 10));
         }
 
         protected override void Update(GameTime gameTime)
@@ -47,7 +49,7 @@ namespace LightingAndCamerasAssignment
                 Exit();
 
             // TODO: Add your update logic here
-            camera.Update(gameTime);
+            fpsCamera.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -59,7 +61,7 @@ namespace LightingAndCamerasAssignment
             // Draw some crates
             foreach (Crate crate in crates)
             {
-                crate.Draw(camera);
+                crate.Draw(fpsCamera);
             }
             base.Draw(gameTime);
         }
